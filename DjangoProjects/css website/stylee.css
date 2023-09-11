@@ -1,0 +1,19 @@
+.navbar{
+    border-style: dashed ;
+    padding: 100px;
+    margin: 100px;
+    opacity: .6;
+}
+.nav{
+    background: rgba(205,214 ,219 , 0.3);
+}
+
+.a:hover{
+    color: red;
+    background-color: black;
+    transition: 2s;
+}
+.a:active{
+    color: blue;
+    background-color: yellow;
+}

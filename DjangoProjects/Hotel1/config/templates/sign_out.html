@@ -1,0 +1,40 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta http-equiv="X-UA-Compatible" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css" />
+</head>
+
+<body>
+
+  <img src="{% static 'img/carousel-1.jpg' %}" style="position:relative; width:1600px; height:740px;">
+
+
+  <div class="container has-text-centered" style="position:relative; bottom:670px;">
+
+    <br><br>
+    <form action="" method="post">
+      <div class="box" style="position:relative; width:700px; left:330px;">
+        <p class="title is-3 mb-6">Sign In</p>
+        {% csrf_token %}
+        {% for field in form %}
+        <label for="{{ field.id_for_label }}" class="label">{{ field.label }}</label>
+        {{ field }}
+        <br><br>
+        {% endfor %}
+
+        <button type="submit" class="button is-dark is-fullwidth">Sign In</button>
+        <br>
+        If you are not registered, click <a href="{% url 'sign_up' %}">sign up</a>
+
+      </div>
+    </form>
+  </div>
+
+</body>
+
+</html>

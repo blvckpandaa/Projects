@@ -1,0 +1,116 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bulma@0.9.4/css/bulma.min.css">
+
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.1.2/css/all.min.css"
+        integrity="sha512-1sCRPdkRXhBV2PBLUdRb4tMg1w2YPf37qatUFeS7zlBy7jJI8Lf4VHwWfZZfpXtYSLy85pkm9GaYVYMfw5BC1A=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+  
+        <style>
+            #menu_our{
+                color: white;
+                text-shadow: 1px 1px 2px black, 0 0 25px rgb(6, 6, 6), 0 0 5px rgb(5, 5, 5);
+            }
+
+            .search_input {
+                border: 1px solid black;
+            }
+            .search_input::placeholder{
+                color: black;
+            }
+        </style>
+        
+</head>
+
+<body style="background-image: url(../media/1617597605_28-p-fon-dlya-prezentatsii-derevo-32.jpg);">
+
+
+
+    <form action="" method="get" style="position:relative; top:40px; ">
+        <div class="" style="position:relative; left:470px; top:40px;">
+        {% csrf_token %}
+        <div class="field has-addons">
+            <div class="control">
+                <input type="search" class="input search_input" name="search" 
+                    placeholder="Enter the name of the food you are looking for..."
+                    style="position:relative; width:500px; height:50px;">
+            </div>
+            <div class="control">
+                <button type="submit" class="button"
+                    style="position:relative; width:130px; height:50px; background:rgba(0, 0, 0, 0.8);">
+                    <i class="fa-solid fa-magnifying-glass" style="color:white;"></i>
+                </button>
+            </div>
+        </div>
+    </div>
+    </form>
+
+  <div class="columns">
+    <div class="column">
+        <a href="{% url 'index' %}" style="position:relative; font-size:25px; color:black; bottom:28px; left:20px;">
+            <i class="fa-solid fa-house"></i>
+        </a>
+    </div>
+    </div>
+  </div>
+
+    
+    
+
+    <br><br><br><br>
+
+    <div class="has-text-centered">
+        <p class="title is-2 has-text-light" id="menu_our">Our Menu</p>
+    </div>
+    <br><br>
+
+
+    {% if foods %}
+        <div class="columns is-multiline">
+                {% for food in foods %}
+            <div class="column is-5" style="position:relative; left:106px; margin:15px 20px;">
+                <div class="box" style="position:relative;  height:280px; background:rgba(5, 5, 5, 0.943); right:22px;">
+                    <div class="columns">
+                        <div class="column">
+                            <p class="title is-5" style="position:relative; left:50px; color: white;">{{ food.name }}</p>
+                            <img src="{{ food.image.url }}"
+                                style="position:relative; width:160px; height:180px; border-radius:50%; left:35px; ">
+                        </div>
+                        <div class="column is-7">
+                            <p class="subtitle is-6" style="color:#fff;">
+                                {{ food.description }}
+                            </p>
+                            <div class="columns" style="position:relative; top:20px; color: white;">
+                                <div class="column">
+                                    <p class="title is-3" style="color:#fff">
+                                        {{ food.price }}$
+                                    </p>
+                                </div>
+                                <div class="column">
+                                    <button class="button"
+                                        style="position:relative; background:#ffbe33; width:150px; height:45px; border-radius:25px; right:30px;">
+
+                                        <a href="{% url 'menu' %}?food={{ food.id }}" class="has-text-dark">
+                                            <span class="mx-2">Order Now</span> <i
+                                                class="fa-solid fa-cart-shopping"></i>
+                                        </a>
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            {% endfor %}
+        </div>
+        {% else %}
+        <p class="title is-1 has-text-centered my-6">No such food found</p>
+        {% endif %}
+</body>
+</html>
+</body>
+</html>
